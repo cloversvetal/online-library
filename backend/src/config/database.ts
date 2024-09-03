@@ -11,7 +11,7 @@ interface DatabaseConfig extends PoolConfig {
 const poolConfig: DatabaseConfig = {
     user: 'postgres',
     host: 'localhost',
-    database: 'online-library',
+    database: 'online_library',
     password: '12345678',
     port: 5432
 }
