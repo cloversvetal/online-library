@@ -48,9 +48,20 @@ class Book {
         return result.rows[0];
     }
 
-    static async deleteBook(id:number): Promise<void> {
+    // DA MIGLIORARE PERCHE' SAREBBE MEGLIO NON FARE IL RETURN DELLE STRINGHE
+    static async deleteBook(id:number): Promise<string> {
         const query = 'DELETE FROM books WHERE id = $1';
-        await pool.query(query, [id]);
+        try {
+            const result = await pool.query(query, [id]);
+            if (result.rowCount != null && result.rowCount > 0) {
+                return "Eliminazione del libro avvenuta con successo";
+            } else {
+                return "Eliminazione del libro non riuscita";
+            }
+        } catch (error) {
+            console.log("Errore durante l'eliminazione del libro: " , error);
+            return "Eliminazione fallita";
+        }
     }
 }
 
