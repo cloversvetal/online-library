@@ -106,10 +106,6 @@ dist
 
 # vuepress v2.x temp and cache directory
 .temp
-<<<<<<< HEAD
-=======
-.cache
->>>>>>> c363e6e2b4e26c3c3435ae4640031ce0d9bdd7af
 
 # Docusaurus cache and generated files
 .docusaurus
@@ -135,7 +131,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
-<<<<<<< HEAD
 
 ### Node Patch ###
 # Serverless Webpack directories
@@ -161,5 +156,3 @@ sketch
 
 # End of https://www.toptal.com/developers/gitignore/api/react,node
 
-=======
->>>>>>> c363e6e2b4e26c3c3435ae4640031ce0d9bdd7af
