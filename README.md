@@ -13,7 +13,7 @@ Il progetto della libreria è suddiviso in 3 parti principali:
 
 Installiamo i componenti necessari per typescript ed express
 npm init -y
-npm install express @types/express typescript ts-node @types/node nodemon pg
+npm install express @types/express typescript ts-node @types/node nodemon @types/pg
 
 npm install dotenv
 npm install @types/dotenv --save-dev
