@@ -10,7 +10,7 @@ const BookItem: React.FC<Book> = ({
   stock,
 }) => {
   return (
-    <div className="book-item" key={id}>
+    <div className="book-item card" key={id}>
       <h2> {title} </h2>
       <h3> {author}</h3>
       <p> {published_year} </p>

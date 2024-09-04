@@ -1,38 +1,94 @@
+:root {
+  --primary-color: #ff8c00;
+  --secondary-color: #ffd700;
+  --light-color: #fff5e6;
+  --dark-color: #8b4513;
+  --text-color: #333;
+}
+
+body {
+  background-color: var(--light-color);
+  color: var(--text-color);
+  font-family: Arial, sans-serif;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar {
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+  padding: 1rem 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navbar-brand, .nav-link {
+  color: white !important;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+
+.card {
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(255, 140, 0, 0.25);
+}
+
+.jumbotron {
+  background-color: var(--light-color);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  border-radius: 0.3rem;
+}
+
+.display-4 {
+  color: var(--primary-color);
+}
+
+.lead {
+  color: var(--dark-color);
+}
+
+.research-form {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.book-list {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
-.App-link {
-  color: #61dafb;
+.book-item {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 1rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+@media (min-width: 768px) {
+  .book-item {
+    width: calc(33.333% - 1rem);
   }
 }
