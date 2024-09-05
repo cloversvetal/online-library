@@ -1,6 +1,6 @@
 # online-library
 
-/****\*\*\*\*****\*\*\*\*****\*\*\*\*****\*\*****\*\*\*\*****\*\*\*\*****\*\*\*\*****/
+/\***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\***\*\*\***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\***/
 
 PREREQUISITI E SETUP:  
 "node": ">=16.18.0",
@@ -41,11 +41,13 @@ PREREQUISITI E SETUP:
    npx tsc
    npm start
    ```
-6. L'applicazione dovrebbe essere accessibile alla porta 'http://localhost:3000' mentre
-   il server alla porta 'http://localhost:5000'
+6. L'applicazione React dovrebbe essere accessibile alla porta:
+   'http://localhost:3000'
+   mentre il server alla porta:
+   'http://localhost:5000'
 
-/****\*\*\*\*****\*\*\*\*****\*\*\*\*****\*\*****\*\*\*\*****\*\*\*\*****\*\*\*\*****/
-/****\*\*\*\*****\*\*\*\*****\*\*\*\*****\*\*****\*\*\*\*****\*\*\*\*****\*\*\*\*****/
+/\***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\***\*\*\***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\***/
+/\***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\***\*\*\***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\***/
 
 Libreria online
 Il progetto della libreria è suddiviso in 3 parti principali:
@@ -54,8 +56,8 @@ Il progetto della libreria è suddiviso in 3 parti principali:
 2. Server backend realizzato con tecnologia Node.js ed Express.js
 3. Client realizzato con React
 
-/****\*\*\*\*****\*\*\*\*****\*\*\*\*****\*\*****\*\*\*\*****\*\*\*\*****\*\*\*\*****/
-/****\*\*\*\*****\*\*\*\*****\*\*\*\*****\*\*****\*\*\*\*****\*\*\*\*****\*\*\*\*****/
+/\***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\***\*\*\***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\***/
+/\***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\***\*\*\***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\***/
 
 03.09.2024  
 Come primo step, si inizializza la parte backend e si crea il DB su postgres.
@@ -76,8 +78,8 @@ Si utilizza github con git per tracciare le versioni
 
 La creazione delle cartelle e dei file segue il design pattern MVC.
 
-/****\*\*\*\*****\*\*\*\*****\*\*\*\*****\*\*****\*\*\*\*****\*\*\*\*****\*\*\*\*****/
-/****\*\*\*\*****\*\*\*\*****\*\*\*\*****\*\*****\*\*\*\*****\*\*\*\*****\*\*\*\*****/
+/\***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\***\*\*\***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\***/
+/\***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\***\*\*\***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\***/
 
 04.09.2024  
 Creazione del frontend con React. Sono stati creati singolarmente i componenti per
@@ -89,12 +91,12 @@ E' stato inoltre utilizzato Bootstrap per personalizzare lo stile grafico dell'a
 Per realizzare questa parte sono state tenute in considerazioni le caratteristiche architteturali di React
 che sono: Isolamento dei componenti, One-Way Data Flow e i Hooks
 
-/****\*\*\*\*****\*\*\*\*****\*\*\*\*****\*\*****\*\*\*\*****\*\*\*\*****\*\*\*\*****/
-/****\*\*\*\*****\*\*\*\*****\*\*\*\*****\*\*****\*\*\*\*****\*\*\*\*****\*\*\*\*****/
+/\***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\***\*\*\***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\***/
+/\***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\***\*\*\***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\***/
 
 05.09.2024  
 Sono state apportate ulteriori modifiche per semplicificare ed accorciare il codice sia
 della parte frontend sia della parte backend
 
-/****\*\*\*\*****\*\*\*\*****\*\*\*\*****\*\*****\*\*\*\*****\*\*\*\*****\*\*\*\*****/
-/****\*\*\*\*****\*\*\*\*****\*\*\*\*****\*\*****\*\*\*\*****\*\*\*\*****\*\*\*\*****/
+/\***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\***\*\*\***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\***/
+/\***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\***\*\*\***\*\*\*\*\*\*\***\*\*\*\*\***\*\*\*\*\*\*\***/
