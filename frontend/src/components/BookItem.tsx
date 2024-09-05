@@ -3,32 +3,29 @@ import { Book } from "../types";
 
 interface BookItemProps extends Book {
   isAuthenticated: boolean;
-  onDelete: () => void;
+  handleDelete: () => void;
 }
 // La destrutturazione serve per rendere chiaramente quali props sono utilizzati
 const BookItem: React.FC<BookItemProps> = ({
-  id,
-  title,
-  author,
-  published_year,
-  genre,
-  stock,
   isAuthenticated,
-  onDelete,
+  handleDelete,
+  ...bookProps
 }) => {
   return (
-    <div className="book-item card" key={id}>
-      <h2>{title}</h2>
-      <h3>{author}</h3>
-      <p>{published_year}</p>
-      <p>{genre}</p>
-      <p>{stock}</p>
+    <div className="book-item card" key={bookProps.id}>
+      <h2>{bookProps.title}</h2>
+      <h3>{bookProps.author}</h3>
+      <p>{bookProps.published_year}</p>
+      <p>{bookProps.genre}</p>
+      <p>{bookProps.stock}</p>
+
       {isAuthenticated && (
         <div>
           <button onClick={() => alert("Modifica non implementata")}>
             Modifica
           </button>
-          <button onClick={onDelete}>Elimina</button>
+
+          <button onClick={handleDelete}>Elimina</button>
         </div>
       )}
     </div>

@@ -7,15 +7,16 @@ import { Book } from "../types"; // Esportazione nominata per specificare quali 
 interface BookListProps {
   books: Book[];
   isAuthenticated: boolean;
-  onDeleteBook: (id: number) => void;
+  handleDelete: (id: number) => void;
 }
 
 // Componente BookList; le props sono sempre passate come un oggetto con una chiave (books in questo caso)
 // In questo caso BookList si aspetta props di tipo 'BookListProps'
+// le props qui sono destrutturate, altrimenti basta fare ({props})
 const BookList: React.FC<BookListProps> = ({
   books,
   isAuthenticated,
-  onDeleteBook,
+  handleDelete,
 }) => {
   return (
     <div className="book-list">
@@ -27,7 +28,7 @@ const BookList: React.FC<BookListProps> = ({
             key={book.id}
             {...book}
             isAuthenticated={isAuthenticated}
-            onDelete={() => onDeleteBook(book.id)}
+            handleDelete={() => handleDelete(book.id)}
           />
         )) // Passo tutte le proprietà di book a BookItem
       )}

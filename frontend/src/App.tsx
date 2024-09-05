@@ -1,19 +1,21 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 //import React from "react";
 //import BookItem from "./components/BookItem";
-
+import "./App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import "./App.css";
 import { Book } from "./types";
+
 import BookList from "./components/BookList";
 import ResearchForm, { SearchParams } from "./components/ResearchForm"; // ?
 import LoginForm from "./components/LoginForm";
+import AddBookForm from "./components/AddBookForm";
 
 function App() {
   const [books, setBooks] = useState<Book[]>([]); // Variabile di stato inizializzata come array vuoto
   const [filteredBooks, setFilteredBooks] = useState<Book[]>([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [showAddBookForm, setShowAddBookForm] = useState(false); // Nuovo stato
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -86,6 +88,22 @@ function App() {
     }
   };
 
+  const handleAddBook = async (newBook: Omit<Book, "id">) => {
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/books/",
+        newBook
+      );
+      const addedBook = response.data;
+      setBooks([...books, addedBook]);
+      setFilteredBooks([...filteredBooks, addedBook]);
+      setShowAddBookForm(false); // Nascondi il form dopo l'aggiunta
+    } catch (error) {
+      console.error("Errore nell'aggiunta del libro:", error);
+      alert("Errore nell'aggiunta del libro");
+    }
+  };
+
   return (
     <div className="App">
       <h1> Elenco libri </h1>
@@ -96,11 +114,22 @@ function App() {
           <button onClick={handleLogout} className="btn btn-danger mb-3">
             Logout
           </button>
+
           <ResearchForm onSearch={filterBooks} />
+
+          <button
+            onClick={() => setShowAddBookForm(!showAddBookForm)}
+            className="btn btn-primary mb-3"
+          >
+            {showAddBookForm ? "Nascondi form" : "Aggiungi libro"}
+          </button>
+
+          {showAddBookForm && <AddBookForm handleAddBook={handleAddBook} />}
+
           <BookList
             books={filteredBooks}
             isAuthenticated={isAuthenticated}
-            onDeleteBook={handleDeleteBook}
+            handleDelete={handleDeleteBook}
           />
         </>
       )}
