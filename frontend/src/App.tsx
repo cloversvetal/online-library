@@ -118,14 +118,14 @@ function App() {
     <div className="App">
       <h1> Elenco libri </h1>
       {!isAuthenticated ? (
-        <LoginForm onLoginSuccess={handleLoginSuccess}></LoginForm>
+        <LoginForm handleLoginSuccess={handleLoginSuccess}></LoginForm>
       ) : (
         <>
           <button onClick={handleLogout} className="btn btn-danger mb-3">
             Logout
           </button>
 
-          <ResearchForm onSearch={handleFilterBooks} />
+          <ResearchForm handleFilterBooks={handleFilterBooks} />
 
           <button
             onClick={() => setShowAddBookForm(!showAddBookForm)}

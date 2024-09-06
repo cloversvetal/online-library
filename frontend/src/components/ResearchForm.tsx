@@ -2,26 +2,28 @@ import { useState } from "react";
 import { SearchParams } from "../types";
 
 interface ResearchFormProps {
-  onSearch: (params: SearchParams) => void;
+  handleFilterBooks: (params: SearchParams) => void;
 }
 
-const ResearchForm: React.FC<ResearchFormProps> = ({ onSearch }) => {
+const ResearchForm: React.FC<ResearchFormProps> = ({ handleFilterBooks }) => {
   const [searchParams, setSearchParams] = useState<SearchParams>({
     title: "",
     author: "",
   });
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setSearchParams((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    const inputName = e.target.name;
+    const inputValue = e.target.value;
+
+    setSearchParams({
+      title: inputName === "title" ? inputValue : searchParams.title,
+      author: inputName === "author" ? inputValue : searchParams.author,
+    });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSearch(searchParams);
+    handleFilterBooks(searchParams);
   };
 
   return (
@@ -37,6 +39,7 @@ const ResearchForm: React.FC<ResearchFormProps> = ({ onSearch }) => {
             placeholder="Titolo"
           />
         </div>
+
         <div className="col-md-4">
           <input
             type="text"
@@ -47,6 +50,7 @@ const ResearchForm: React.FC<ResearchFormProps> = ({ onSearch }) => {
             placeholder="Autore"
           />
         </div>
+
         <div className="col-md-6">
           <button type="submit" className="btn btn-primary w-100">
             Cerca

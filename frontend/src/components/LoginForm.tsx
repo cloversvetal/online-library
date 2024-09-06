@@ -4,10 +4,10 @@ import { useState } from "react";
 import axios from "axios";
 
 interface LoginFormProps {
-  onLoginSuccess: (token: string) => void;
+  handleLoginSuccess: (token: string) => void;
 }
 
-const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
+const LoginForm: React.FC<LoginFormProps> = ({ handleLoginSuccess }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -21,7 +21,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoginSuccess }) => {
       });
       const { token } = response.data;
       localStorage.setItem("token", token);
-      onLoginSuccess(token);
+      handleLoginSuccess(token);
     } catch (error) {
       console.error("Login failed:", error);
       alert("Login failed. Please check your credentials");
