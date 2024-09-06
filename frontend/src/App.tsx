@@ -4,14 +4,15 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Book } from "./types";
+import { Book, SearchParams } from "./types";
 
 import BookList from "./components/BookList";
-import ResearchForm, { SearchParams } from "./components/ResearchForm"; // ?
+import ResearchForm from "./components/ResearchForm";
 import LoginForm from "./components/LoginForm";
 import AddBookForm from "./components/AddBookForm";
 
 function App() {
+  // Hooks
   const [books, setBooks] = useState<Book[]>([]); // Variabile di stato inizializzata come array vuoto
   const [filteredBooks, setFilteredBooks] = useState<Book[]>([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -35,20 +36,6 @@ function App() {
     }
   }, [isAuthenticated]); // This effect runs when isAuthenticated changes
 
-  const handleLoginSuccess = (token: string) => {
-    setIsAuthenticated(true);
-    localStorage.setItem("token", token);
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  };
-
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    localStorage.removeItem("token");
-    delete axios.defaults.headers.common["Authorization"];
-    setBooks([]);
-    setFilteredBooks([]);
-  };
-
   const fetchBooks = async () => {
     try {
       const response = await axios.get("http://localhost:5000/books/");
@@ -61,19 +48,41 @@ function App() {
     }
   };
 
-  // Prende un parametro params di tipo SearchParams
-  const filterBooks = (params: SearchParams) => {
+  // Funzione passata al componente LoginForm
+  // Eseguita per prima perché il componente LoginForm è immesso per primo
+  const handleLoginSuccess = (token: string) => {
+    setIsAuthenticated(true);
+    localStorage.setItem("token", token);
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    localStorage.removeItem("token");
+    //delete axios.defaults.headers.common["Authorization"];
+    setBooks([]);
+    setFilteredBooks([]);
+  };
+
+  // Funzione passata a ResearchForm: prende un parametro params di tipo SearchParams
+  const handleFilterBooks = (params: SearchParams) => {
     const filtered = books.filter((book) => {
-      return (
-        (!params.title ||
-          book.title.toLowerCase().includes(params.title.toLowerCase())) &&
-        (!params.author ||
-          book.author.toLowerCase().includes(params.author.toLowerCase()))
-      );
+      const titleMatch =
+        !params.title ||
+        book.title.toLowerCase().includes(params.title.toLowerCase());
+
+      const authorMatch =
+        !params.author ||
+        book.author.toLowerCase().includes(params.author.toLowerCase());
+
+      // Se i campi sono vuoti resitutisco comunque 'true' e 'true'
+      // Se nei campi non ci sono corrispondenze viene restituito almeno un 'false'
+      return titleMatch && authorMatch;
     });
+
     setFilteredBooks(filtered);
   };
 
+  // Funzione passata a BookList
   const handleDeleteBook = async (id: number) => {
     if (window.confirm("Sei sicuro di voler eliminare questo libro?")) {
       try {
@@ -88,6 +97,7 @@ function App() {
     }
   };
 
+  // Funzione passata a AddBookForm
   const handleAddBook = async (newBook: Omit<Book, "id">) => {
     try {
       const response = await axios.post(
@@ -115,7 +125,7 @@ function App() {
             Logout
           </button>
 
-          <ResearchForm onSearch={filterBooks} />
+          <ResearchForm onSearch={handleFilterBooks} />
 
           <button
             onClick={() => setShowAddBookForm(!showAddBookForm)}

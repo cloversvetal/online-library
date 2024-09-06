@@ -20,7 +20,7 @@ app.post('/login', (req: Request, res:Response) => {
         res.json({SECRET_KEY});  
     }
     else {
-        res.status(401).json({message: 'Invalid credentials'});
+        res.status(401).json({message: 'Credenziali non valide'});
     }
 });
 

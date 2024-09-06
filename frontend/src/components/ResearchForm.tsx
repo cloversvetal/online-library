@@ -1,12 +1,8 @@
 import { useState } from "react";
+import { SearchParams } from "../types";
 
 interface ResearchFormProps {
   onSearch: (params: SearchParams) => void;
-}
-
-export interface SearchParams {
-  title?: string;
-  author?: string;
 }
 
 const ResearchForm: React.FC<ResearchFormProps> = ({ onSearch }) => {

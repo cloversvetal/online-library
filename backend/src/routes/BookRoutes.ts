@@ -3,7 +3,7 @@ import {Router} from 'express';
 import {Request, Response} from 'express';
 import * as bookController from '../controllers/BookController';
 
-// QUINDI VA BENE LA TIPIZZAZIONE CONST PER QUESTO MIDDLEWARE ROUTER?
+
 const router: Router = express.Router();
 
 router.get('/', (req: Request, res:Response) => {

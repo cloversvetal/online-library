@@ -6,3 +6,8 @@ export interface Book {
     genre: string;
     stock: number;
 }
+
+export interface SearchParams {
+    title?: string;
+    author?: string;
+  }
