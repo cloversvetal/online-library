@@ -3,6 +3,7 @@ import router from './routes/BookRoutes';
 import cors from 'cors';
 import * as crypto from 'crypto';
 import { hashPassword, verifyPassword } from './utils/SecurityUtils';
+import { errorHandler, methodLogger } from './middlewares/error-handler';
 
 const app: Express = express();
 const port: Number = 5000;
@@ -11,11 +12,8 @@ const MASTER_USER = 'masterUser';
 
 app.use(express.json());
 app.use(cors());
-
-app.use((req, res, next) => {
-    console.log(`${req.method} ${req.url}`);
-    next(); // Call the next middleware function
-});
+app.use(methodLogger);
+app.use(errorHandler); // Posso metterlo anche alla fine perché è un middleware speciale chiamato solo in caso di errore
 
 
 app.use('/books', router);
