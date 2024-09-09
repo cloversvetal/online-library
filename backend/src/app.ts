@@ -12,6 +12,11 @@ const MASTER_USER = 'masterUser';
 app.use(express.json());
 app.use(cors());
 
+app.use((req, res, next) => {
+    console.log(`${req.method} ${req.url}`);
+    next(); // Call the next middleware function
+});
+
 
 app.use('/books', router);
 

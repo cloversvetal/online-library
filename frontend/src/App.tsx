@@ -130,6 +130,7 @@ function App() {
           <button
             onClick={() => setShowAddBookForm(!showAddBookForm)}
             className="btn btn-primary mb-3"
+            style={{ padding: "10px" }}
           >
             {showAddBookForm ? "Nascondi form" : "Aggiungi libro"}
           </button>

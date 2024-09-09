@@ -33,7 +33,7 @@ const AddBookForm: React.FC<AddBookProps> = ({ handleAddBook }) => {
   };
 
   return (
-    <div>
+    <div className="add-book">
       <h2>Add Book</h2>
       <form onSubmit={handleSubmit}>
         <div>
@@ -65,6 +65,8 @@ const AddBookForm: React.FC<AddBookProps> = ({ handleAddBook }) => {
             id="published_year"
             value={publishedYear}
             onChange={(e) => setPublishedYear(e.target.value)}
+            min="0"
+            max="2024"
             required
           />
         </div>
