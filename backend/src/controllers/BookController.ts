@@ -2,8 +2,7 @@ import BookModel from '../models/BookModel';
 import {Request, Response} from 'express';
 // BookController prende le richieste e le risposte, le maneggia e poi passa i dati a BookModel
 // che si occuperà di fare le interrogazioni al DB.
-// E' MIGLIORABILE CREANDO UNA CLASSE CONTENITORE E CREANDO ANCHE UNA FUNZIONE DI VALIDAZIONE INPUT
-// VEDERE https://claude.ai/chat/03d0d55a-11a2-4899-9b45-9699f988de54
+
 
 
 async function getAllBooks(req: Request, res: Response): Promise<void> {
