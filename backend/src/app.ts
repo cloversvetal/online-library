@@ -13,7 +13,6 @@ const MASTER_USER = 'masterUser';
 app.use(express.json());
 app.use(cors());
 app.use(methodLogger);
-app.use(errorHandler); // Posso metterlo anche alla fine perché è un middleware speciale chiamato solo in caso di errore
 
 
 app.use('/books', router);
@@ -33,3 +32,6 @@ app.post('/login', (req: Request, res:Response) => {
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
+
+//app.use(errorHandler); // Posso metterlo anche alla fine perché è un middleware speciale chiamato solo in caso di errore
+
