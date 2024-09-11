@@ -8,6 +8,7 @@ interface BookListProps {
   books: Book[];
   isAuthenticated: boolean;
   handleDelete: (id: number) => void;
+  handleEdit: (updatedBook: Book) => void;
 }
 
 // Componente BookList; le props sono sempre passate come un oggetto con una chiave (books in questo caso)
@@ -17,6 +18,7 @@ const BookList: React.FC<BookListProps> = ({
   books,
   isAuthenticated,
   handleDelete,
+  handleEdit,
 }) => {
   return (
     <div className="book-list">
@@ -29,6 +31,7 @@ const BookList: React.FC<BookListProps> = ({
             {...book}
             isAuthenticated={isAuthenticated}
             handleDelete={() => handleDelete(book.id)}
+            handleEdit={handleEdit}
           />
         )) // Passo tutte le proprietà di book a BookItem
       )}

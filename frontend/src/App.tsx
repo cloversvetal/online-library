@@ -114,6 +114,28 @@ function App() {
     }
   };
 
+  const handleEditBook = async (updateBook: Book) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:5000/books/${updateBook.id}`,
+        updateBook
+      );
+      const editedBook = response.data;
+      setBooks(
+        books.map((book) => (book.id === editedBook.id ? editedBook : book))
+      );
+      setFilteredBooks(
+        filteredBooks.map((book) =>
+          book.id === editedBook.id ? editedBook : book
+        )
+      );
+      alert("Libro modificato con successo");
+    } catch (error) {
+      console.error("Errore nella modifica del libro: ", error);
+      alert("Errore nella modifica del libro");
+    }
+  };
+
   return (
     <div className="App">
       <h1> Elenco libri </h1>
@@ -141,6 +163,7 @@ function App() {
             books={filteredBooks}
             isAuthenticated={isAuthenticated}
             handleDelete={handleDeleteBook}
+            handleEdit={handleEditBook}
           />
         </>
       )}
