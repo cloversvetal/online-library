@@ -120,15 +120,17 @@ function App() {
         `http://localhost:5000/books/${updateBook.id}`,
         updateBook
       );
+
       const editedBook = response.data;
-      setBooks(
-        books.map((book) => (book.id === editedBook.id ? editedBook : book))
-      );
+
+      // Cambio di stato => Rerender
+      setBooks(books.map((book) => (book.id === editedBook.id ? editedBook : book)));
+
+      // Cambio di stato => Rerender
       setFilteredBooks(
-        filteredBooks.map((book) =>
-          book.id === editedBook.id ? editedBook : book
-        )
+        filteredBooks.map((book) => book.id === editedBook.id ? editedBook : book)
       );
+
       alert("Libro modificato con successo");
     } catch (error) {
       console.error("Errore nella modifica del libro: ", error);

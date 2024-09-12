@@ -42,6 +42,8 @@ async function addBook(req: Request, res:Response): Promise<void> {
 } 
 
 async function updateBook(req: Request, res:Response): Promise<void> {
+    console.log("Il libro da modificare con i suoi valori è : ", req.body);
+    
     try {
         const id: number = parseInt(req.params.id);
         const {title, author, published_year, genre, stock} = req.body;

@@ -19,12 +19,27 @@ const BookItem: React.FC<BookItemProps> = ({
   const [editedBook, setEditedBook] = useState<Book>(bookProps);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    console.log("Book to edit: ", e.target);
+    const { name, value } = e.target; // Entrambe stringhe perchè gli elementi html sono sempre lette come stringe
+    let updatedValue: string | number | null = value;
+
+    // Controlla se è un campo numerico e gestisci i valori vuoti
+    if (name === "published_year" || name === "stock") {
+      if (value === "") {
+        updatedValue = null; // Se il campo è vuoto, impostiamo null
+      } else {
+        updatedValue = parseInt(value); // Altrimenti, convertiamo il valore in intero
+        if (isNaN(updatedValue)) {
+          updatedValue = 0; // Se la conversione fallisce (non è un numero), impostiamo 0
+        }
+      }
+    }
+
     setEditedBook((prev) => ({
       ...prev,
-      [name]:
-        name === "published_year" || name === "stock" ? parseInt(value) : value,
+      [name]: updatedValue,
     }));
+
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -33,8 +48,12 @@ const BookItem: React.FC<BookItemProps> = ({
     setIsEditing(false);
   };
 
+  //L'utilizzo di un form richiede handleSubmit
+  //Per ogni libro c'è intrinseca la possibilità di modifica che viene attivata solo se isEditing='true'
+
   if (isEditing) {
     return (
+      // editedBook possiede gia dei valori grazie alla riga 19 che utilizza le props
       <form onSubmit={handleSubmit} className="book-item card">
         <input
           name="title"
@@ -51,7 +70,7 @@ const BookItem: React.FC<BookItemProps> = ({
         <input
           name="published_year"
           type="number"
-          value={editedBook.published_year}
+          value={editedBook.published_year == null ? 0 : editedBook.published_year }
           onChange={handleInputChange}
           required
         />
@@ -64,7 +83,7 @@ const BookItem: React.FC<BookItemProps> = ({
         <input
           name="stock"
           type="number"
-          value={editedBook.stock}
+          value={editedBook.stock == null ? "" : editedBook.stock}
           onChange={handleInputChange}
           required
         />

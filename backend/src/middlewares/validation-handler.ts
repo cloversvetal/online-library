@@ -1,3 +1,4 @@
+// Da spostare in utils piuttosto che middleware
 export const validateBook = (book: any) => {
     console.log("validateBook: ", book);
     const errors = [];

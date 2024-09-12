@@ -43,8 +43,12 @@ class Book {
     } 
 
     static async updateBook(id:number, title: string, author: string, published_year: number, genre: string, stock: number): Promise<BookItem> {
-        const query = 'UPDATE books SET title = $2 author = $3 published_year = $4 genre = $5 stock=$6 WHERE id = $1 RETURNING *';
-        const result: QueryResult<BookItem> = await pool.query(query);
+        //console.log("updateBook from BookModel.ts called");
+        const values: any[] = [id, title, author, published_year, genre, stock];
+        //console.log("Values got for BookModel.ts", values);
+        const query = 'UPDATE books SET title = $2, author = $3, published_year = $4, genre = $5, stock=$6 WHERE id = $1 RETURNING *';
+        const result: QueryResult<BookItem> = await pool.query(query, values);
+
         return result.rows[0];
     }
 

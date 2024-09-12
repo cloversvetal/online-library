@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-
+// Da spostare in utils piuttosto che middleware
 export const errorHandler = (res: Response, error: any) => {
     console.error("Error details params:", error.params);
     console.error("Error details query:", error.query);
