@@ -1,3 +1,4 @@
+
 import {Pool, PoolConfig} from 'pg';
 
 interface DatabaseConfig extends PoolConfig {

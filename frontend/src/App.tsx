@@ -10,6 +10,8 @@ import BookList from "./components/BookList";
 import ResearchForm from "./components/ResearchForm";
 import LoginForm from "./components/LoginForm";
 import AddBookForm from "./components/AddBookForm";
+import ReadingClock from "./components/ReadingClock";
+import { isReadable } from "stream";
 
 function App() {
   // Hooks
@@ -17,6 +19,10 @@ function App() {
   const [filteredBooks, setFilteredBooks] = useState<Book[]>([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showAddBookForm, setShowAddBookForm] = useState(false); // Nuovo stato
+
+  const [isReading, setIsReading] = useState(false);
+  const [currentBook, setCurrentBook] = useState<Book | null>(null);
+
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -78,7 +84,6 @@ function App() {
       // Se nei campi non ci sono corrispondenze viene restituito almeno un 'false'
       return titleMatch && authorMatch;
     });
-
     setFilteredBooks(filtered);
   };
 
@@ -138,6 +143,11 @@ function App() {
     }
   };
 
+  const handleStartReading = (book: Book) => {
+    setCurrentBook(book);
+    setIsReading(true);
+  }
+
   return (
     <div className="App">
       <h1> Elenco libri </h1>
@@ -166,7 +176,14 @@ function App() {
             isAuthenticated={isAuthenticated}
             handleDelete={handleDeleteBook}
             handleEdit={handleEditBook}
+            handleStartReading = {handleStartReading}
           />
+
+          {isReading && currentBook ? (
+            <ReadingClock isReading={isReading} book={currentBook} />
+          ) : (
+            <button onClick={() => setIsReading(true)}>Orologio di lettura</button>
+          )}
         </>
       )}
     </div>

@@ -2,17 +2,20 @@
 import React from "react";
 import { Book } from "../types";
 import { useState } from "react";
+import Button from '@mui/material/Button';
 
 interface BookItemProps extends Book {
   isAuthenticated: boolean;
   handleDelete: () => void;
   handleEdit: (updatedBook: Book) => void;
+  handleStartReading: (book: Book) => void;
 }
 // La destrutturazione serve per rendere chiaramente quali props sono utilizzati
 const BookItem: React.FC<BookItemProps> = ({
   isAuthenticated,
   handleDelete,
   handleEdit,
+  handleStartReading,
   ...bookProps
 }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -105,9 +108,9 @@ const BookItem: React.FC<BookItemProps> = ({
 
       {isAuthenticated && (
         <div>
-          <button onClick={() => setIsEditing(true)}> Modifica </button>
-
-          <button onClick={handleDelete}>Elimina</button>
+          <Button variant='contained' color='secondary' onClick={() => setIsEditing(true)}> Modifica </Button>
+          <Button variant='contained' color='warning' onClick={() => handleStartReading(bookProps)}>Leggi</Button>
+          <Button variant='contained' color='warning' onClick={handleDelete}>Elimina</Button>
         </div>
       )}
     </div>
